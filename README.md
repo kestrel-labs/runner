@@ -1,5 +1,5 @@
 # runner
-Host configuration
+Deployment server host configuration
 
 1. Install Ubuntu 22.04
 1. Install vim
@@ -67,23 +67,4 @@ echo \
   $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 sudo apt-get update
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-```
-
-1. Set up systemd unit
-`sudo vim /etc/systemd/system/docker-compose@.service`
-```
-[Unit]
-Description=%i service with docker compose
-PartOf=docker.service
-After=docker.service
-
-[Service]
-Type=oneshot
-RemainAfterExit=true
-WorkingDirectory=/etc/docker/compose/%i
-ExecStart=/usr/bin/docker compose up -d --remove-orphans
-ExecStop=/usr/bin/docker compose down
-
-[Install]
-WantedBy=multi-user.target
 ```
