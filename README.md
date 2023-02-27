@@ -43,7 +43,7 @@ network:
 ```
 ```
 sudo netplan apply
-reboot
+sudo reboot
 ```
 
 1. Add to your `/etc/hosts`
